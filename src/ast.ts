@@ -684,8 +684,15 @@ export const parseSqliteOutputShape = defineShape(parseSqliteOutputSchema);
 export type ParseSqliteOutput = typeof parseSqliteOutputShape.runtimeType;
 
 /**
- * The TypeScript type for an individual statement in the AST.
+ * The TypeScript type for an individual node in the AST.
  *
  * @category Internal
  */
-export type SqliteAst = Extract<Static<typeof sqliteAstSchema>, {type: 'statement'}>;
+export type SqliteAstNode = Static<typeof sqliteAstSchema>;
+
+/**
+ * The TypeScript type for the top level AST result.
+ *
+ * @category Internal
+ */
+export type SqliteAst = Extract<SqliteAstNode, {type: 'statement'}>;
