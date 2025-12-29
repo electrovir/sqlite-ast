@@ -688,4 +688,4 @@ export type ParseSqliteOutput = typeof parseSqliteOutputShape.runtimeType;
  *
  * @category Internal
  */
-export type SqliteAst = Static<typeof sqliteAstSchema>;
+export type SqliteAst = Extract<Static<typeof sqliteAstSchema>, {type: 'statement'}>;

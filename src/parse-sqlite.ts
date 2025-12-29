@@ -26,7 +26,13 @@ export function parseSqlite(sql: string | Sql): SqliteAst[] {
         }
         assert.tsType(ast.statement).notEquals<unknown[]>();
 
-        return ast.statement;
+        return ast.statement.map((statement) => {
+            if (statement.type === 'statement') {
+                return statement;
+            } else {
+                throw new Error(`Unexpected top level AST entry type: ${statement.type}`);
+            }
+        });
     } catch (error) {
         throw error instanceof SyntaxError ? tracer.smartError(error) : error;
     }
