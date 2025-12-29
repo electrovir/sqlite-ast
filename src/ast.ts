@@ -1,4 +1,4 @@
-import {Type, type Static, type TSchema} from '@sinclair/typebox';
+import {Type, type Static} from '@sinclair/typebox';
 import {defineShape} from 'object-shape-tester';
 
 /**
@@ -7,7 +7,7 @@ import {defineShape} from 'object-shape-tester';
  *
  * @category Internal
  */
-export const sqliteAstSchema: TSchema = Type.Recursive(
+export const sqliteAstSchema = Type.Recursive(
     (This) =>
         Type.Union([
             Type.Object({

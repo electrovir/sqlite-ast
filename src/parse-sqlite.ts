@@ -1,5 +1,6 @@
+import {assert} from '@augment-vir/assert';
 import {assertValidShape} from 'object-shape-tester';
-import {parseSqliteOutputShape} from './ast.js';
+import {parseSqliteOutputShape, type SqliteAst} from './ast.js';
 import {parse, SyntaxError} from './parser.js';
 import {Sql} from './sql.js';
 import {Tracer} from './tracer.js';
@@ -9,7 +10,7 @@ import {Tracer} from './tracer.js';
  *
  * @category Main
  */
-export function parseSqlite(sql: string | Sql) {
+export function parseSqlite(sql: string | Sql): SqliteAst[] {
     const tracer = new Tracer();
 
     try {
@@ -20,8 +21,9 @@ export function parseSqlite(sql: string | Sql) {
             startRule: 'start',
         });
         assertValidShape(ast, parseSqliteOutputShape);
+        assert.tsType(ast.statement).notEquals<unknown[]>();
 
-        return ast;
+        return ast.statement;
     } catch (error) {
         throw error instanceof SyntaxError ? tracer.smartError(error) : error;
     }
