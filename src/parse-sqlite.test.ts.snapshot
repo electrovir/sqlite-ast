@@ -438,6 +438,10 @@ exports[`parseSqlite > regexp expression 1`] = `
 "[{\\"type\\":\\"statement\\",\\"variant\\":\\"select\\",\\"result\\":[{\\"type\\":\\"identifier\\",\\"variant\\":\\"star\\",\\"name\\":\\"*\\"}],\\"from\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"table\\",\\"name\\":\\"users\\"},\\"where\\":[{\\"type\\":\\"expression\\",\\"format\\":\\"binary\\",\\"variant\\":\\"operation\\",\\"operation\\":\\"regexp\\",\\"right\\":{\\"type\\":\\"literal\\",\\"variant\\":\\"text\\",\\"value\\":\\"^[a-z]+@example.com$\\"},\\"left\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"column\\",\\"name\\":\\"email\\"}}]}]"
 `;
 
+exports[`parseSqlite > renames a column 1`] = `
+"[{\\"type\\":\\"statement\\",\\"variant\\":\\"alter table\\",\\"target\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"table\\",\\"name\\":\\"users\\"},\\"action\\":\\"rename, column\\",\\"oldName\\":\\"name\\",\\"newName\\":\\"human_name\\"}]"
+`;
+
 exports[`parseSqlite > replace statement 1`] = `
 "[{\\"type\\":\\"statement\\",\\"variant\\":\\"insert\\",\\"action\\":\\"replace\\",\\"into\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"expression\\",\\"format\\":\\"table\\",\\"name\\":\\"users\\",\\"columns\\":[{\\"type\\":\\"identifier\\",\\"variant\\":\\"column\\",\\"name\\":\\"id\\"},{\\"type\\":\\"identifier\\",\\"variant\\":\\"column\\",\\"name\\":\\"name\\"}]},\\"result\\":[{\\"type\\":\\"expression\\",\\"variant\\":\\"list\\",\\"expression\\":[{\\"type\\":\\"literal\\",\\"variant\\":\\"decimal\\",\\"value\\":\\"1\\"},{\\"type\\":\\"literal\\",\\"variant\\":\\"text\\",\\"value\\":\\"Charlie\\"}]}]}]"
 `;

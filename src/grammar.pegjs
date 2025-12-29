@@ -894,8 +894,19 @@ alter_start "ALTER TABLE Keyword"
   { return foldStringKey([ a, t ]); }
 
 alter_action
-  = alter_action_rename
+  = alter_action_rename_column
+  / alter_action_rename
   / alter_action_add
+
+alter_action_rename_column "RENAME COLUMN Keyword"
+  = s:( RENAME ) o COLUMN o oldName:( name ) o TO o newName:( name )
+  {
+    return {
+      'action': keyNode(s + ' column'),
+      'oldName': oldName,
+      'newName': newName
+    };
+  }
 
 alter_action_rename "RENAME TO Keyword"
   = s:( RENAME ) o TO o n:( id_table )

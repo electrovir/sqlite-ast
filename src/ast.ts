@@ -8,8 +8,8 @@ import {defineShape} from 'object-shape-tester';
  * @category Internal
  */
 export const sqliteAstSchema = Type.Recursive(
-    (This) =>
-        Type.Union([
+    (This) => {
+        return Type.Union([
             Type.Object({
                 type: Type.Literal('expression'),
                 format: Type.Literal('binary'),
@@ -207,7 +207,6 @@ export const sqliteAstSchema = Type.Recursive(
                 }),
                 alias: Type.Optional(Type.String()),
             }),
-
             Type.Object({
                 type: Type.Literal('statement'),
                 variant: Type.Literal('select'),
@@ -429,6 +428,8 @@ export const sqliteAstSchema = Type.Recursive(
                 action: Type.String(),
                 name: Type.Optional(This),
                 definition: Type.Optional(This),
+                oldName: Type.Optional(Type.String()),
+                newName: Type.Optional(Type.String()),
             }),
             Type.Object({
                 type: Type.Literal('statement'),
@@ -651,7 +652,8 @@ export const sqliteAstSchema = Type.Recursive(
                     }),
                 ),
             }),
-        ]),
+        ]);
+    },
     {$id: 'SqliteAst'},
 );
 

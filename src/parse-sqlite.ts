@@ -1,5 +1,6 @@
 import {assert} from '@augment-vir/assert';
-import {assertValidShape} from 'object-shape-tester';
+import {indent} from '@augment-vir/common';
+import {checkValidShape} from 'object-shape-tester';
 import {parseSqliteOutputShape, type SqliteAst} from './ast.js';
 import {parse, SyntaxError} from './parser.js';
 import {Sql} from './sql.js';
@@ -20,7 +21,9 @@ export function parseSqlite(sql: string | Sql): SqliteAst[] {
             tracer,
             startRule: 'start',
         });
-        assertValidShape(ast, parseSqliteOutputShape);
+        if (!checkValidShape(ast, parseSqliteOutputShape)) {
+            throw new Error(`AST does not match shape:\n${indent(JSON.stringify(ast, null, 4))}`);
+        }
         assert.tsType(ast.statement).notEquals<unknown[]>();
 
         return ast.statement;

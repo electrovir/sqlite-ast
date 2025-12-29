@@ -1143,6 +1143,12 @@ describe(parseSqlite.name, () => {
             `,
         },
         {
+            it: 'renames a column',
+            input: sql`
+                ALTER TABLE users RENAME COLUMN name TO human_name;
+            `,
+        },
+        {
             it: 'compound select with except',
             input: sql`
                 SELECT id FROM all_users
