@@ -430,6 +430,7 @@ export const sqliteAstSchema = Type.Recursive(
                 definition: Type.Optional(This),
                 oldName: Type.Optional(Type.String()),
                 newName: Type.Optional(Type.String()),
+                column: Type.Optional(Type.String()),
             }),
             Type.Object({
                 type: Type.Literal('statement'),

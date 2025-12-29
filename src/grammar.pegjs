@@ -897,6 +897,7 @@ alter_action
   = alter_action_rename_column
   / alter_action_rename
   / alter_action_add
+  / alter_action_drop
 
 alter_action_rename_column "RENAME COLUMN Keyword"
   = s:( RENAME ) o COLUMN o oldName:( name ) o TO o newName:( name )
@@ -927,6 +928,19 @@ alter_action_add "ADD COLUMN Keyword"
   }
 
 action_add_modifier
+  = s:( COLUMN ) o
+  { return keyNode(s); }
+
+alter_action_drop "DROP COLUMN Keyword"
+  = s:( DROP ) o ( action_drop_modifier )? n:( name )
+  {
+    return {
+      'action': keyNode(s),
+      'column': n
+    };
+  }
+
+action_drop_modifier
   = s:( COLUMN ) o
   { return keyNode(s); }
 

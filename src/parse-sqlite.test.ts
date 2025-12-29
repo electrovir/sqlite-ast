@@ -337,6 +337,12 @@ describe(parseSqlite.name, () => {
             input: sql`DROP TABLE beeStuff`,
         },
         {
+            it: 'drops a column',
+            input: sql`
+                ALTER TABLE users DROP COLUMN "name"
+            `,
+        },
+        {
             it: 'drop trigger',
             input: sql`DROP TRIGGER IF EXISTS \`happy\`.\`insertRecord\``,
         },

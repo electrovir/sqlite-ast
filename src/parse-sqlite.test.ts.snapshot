@@ -230,6 +230,10 @@ exports[`parseSqlite > drop view 1`] = `
 "[{\\"type\\":\\"statement\\",\\"target\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"view\\",\\"name\\":\\"user_summary\\"},\\"variant\\":\\"drop\\",\\"format\\":\\"view\\",\\"condition\\":[{\\"type\\":\\"condition\\",\\"variant\\":\\"if\\",\\"condition\\":{\\"type\\":\\"expression\\",\\"variant\\":\\"exists\\",\\"operator\\":\\"exists\\"}}]}]"
 `;
 
+exports[`parseSqlite > drops a column 1`] = `
+"[{\\"type\\":\\"statement\\",\\"variant\\":\\"alter table\\",\\"target\\":{\\"type\\":\\"identifier\\",\\"variant\\":\\"table\\",\\"name\\":\\"users\\"},\\"action\\":\\"drop\\",\\"column\\":\\"name\\"}]"
+`;
+
 exports[`parseSqlite > exclusive transaction 1`] = `
 "[{\\"type\\":\\"statement\\",\\"variant\\":\\"transaction\\",\\"action\\":\\"begin\\",\\"defer\\":\\"exclusive\\"}]"
 `;
